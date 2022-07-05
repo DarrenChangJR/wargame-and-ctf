@@ -2,11 +2,11 @@ https://overthewire.org/wargames/leviathan/
 
 ### Binary Analysis (1 -> 2, 2 -> 3)
 https://opensource.com/article/20/4/linux-binary-analysis
-**ldd**: print shared libraries dependencies (may execute)
-**ltrace**: library call tracer
-**objdump** 
-**readelf**
-**strace**
+- **ldd**: print shared libraries dependencies (may execute)
+- **ltrace**: library call tracer
+- **objdump** 
+- **readelf**
+- **strace**
 
 ### Special Character Escaping (2 -> 3)
 Access checking may be separate from access using. If separate files are checked and used, consider symlink with problematic names (arising from buggy character escaping).
